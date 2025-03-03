@@ -1,0 +1,40 @@
+name: Update LlamaIndex Embeddings
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**'  # trigger in data folder
+  workflow_dispatch:  # trigger manually
+
+jobs:
+  update-embeddings:
+    runs-on: ubuntu-latest
+    if: github.actor == 'katharinawil'
+
+    steps: #load repo into ubuntu vm
+      - name: clone repo
+        uses: actions/checkout@v4
+
+      - name: python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: install requirements
+        run: pip install -r requirements.txt
+
+
+      - name: update embeddings with llamaindex
+        run: python scripts/update_llamaindex.py
+
+      - name: commit and push changes
+        run: |
+          git config --global user.name "Katharina"
+          git config --global user.email "katharina.willig@outlook.com"
+          git add storage/default_vector_store.json
+          git add storage/docstore.json
+          git add storage/index_store.json
+          git commit -m "automatic update of llamaindex embeddings" || echo "no changes to commit"
+          git push origin main || echo "no changes to push"
