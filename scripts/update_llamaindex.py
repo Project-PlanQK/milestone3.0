@@ -17,12 +17,19 @@ def update_embeddings():
         index = load_index_from_storage(storage_context)
     else:
         print("create new index...")
-        documents = SimpleDirectoryReader(DATA_DIR).load_data()
+    #load new docs
+    documents = SimpleDirectoryReader(DATA_DIR).load_data()
+
+    if documents:
+        print(f"{len(documents)} found new docs, update index")
         index = VectorStoreIndex.from_documents(documents)
 
-    # save new embeddings
-    index.storage_context.persist(PERSIST_DIR)
-    print("updated and saved embeddings")
+        # save new embeddings
+        storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
+        index.storage_context.persist(persist_dir=PERSIST_DIR)
+        print("updated and saved embeddings")
+    else:
+        print("no new docs found")
 
 if __name__ == "__main__":
     update_embeddings()

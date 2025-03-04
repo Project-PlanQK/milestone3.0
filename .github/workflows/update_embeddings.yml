@@ -31,6 +31,9 @@ jobs:
       - name: update embeddings with llamaindex
         run: python scripts/update_llamaindex.py
 
+      - name: show diff
+        run: git diff storage/
+
       - name: commit and push changes
         run: |
           git config --global user.name "Katharina"
