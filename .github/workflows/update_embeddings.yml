@@ -35,7 +35,7 @@ jobs:
         run: |
           git config --global user.name "Katharina"
           git config --global user.email "katharina.willig@outlook.com"
-          git add storage/default_vector_store.json
+          git add storage/default__vector_store.json
           git add storage/docstore.json
           git add storage/index_store.json
           git commit -m "automatic update of llamaindex embeddings" || echo "no changes to commit"
