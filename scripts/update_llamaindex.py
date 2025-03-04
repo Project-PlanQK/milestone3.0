@@ -1,6 +1,10 @@
 import os
-from llama_index import VectorStoreIndex, SimpleDirectoryReader, StorageContext, load_index_from_storage
-
+from llama_index.core import (
+    VectorStoreIndex,
+    SimpleDirectoryReader,
+    StorageContext,
+    load_index_from_storage,
+)
 # Pfade für Daten und Storage
 DATA_DIR = "data"
 PERSIST_DIR = "storage"
