@@ -36,10 +36,11 @@ jobs:
 
       - name: commit and push changes
         run: |
-          git config --global user.name "Katharina"
-          git config --global user.email "katharina.willig@outlook.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Project-PlanQK/milestone3.0.git
           git add storage/default__vector_store.json
           git add storage/docstore.json
           git add storage/index_store.json
-          git commit -m "automatic update of llamaindex embeddings" || echo "no changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Project-PlanQK/milestone3.0.git || echo "no changes to push"
+          git commit -m "🚀 Automatische Aktualisierung der Embeddings" || echo "no changes to commit"
+          git push origin main || echo "no push"
