@@ -42,5 +42,5 @@ jobs:
           git add storage/default__vector_store.json
           git add storage/docstore.json
           git add storage/index_store.json
-          git commit -m "🚀 Automatische Aktualisierung der Embeddings" || echo "no changes to commit"
+          git commit -m "automatic update of embeddings" || echo "no changes to commit"
           git push origin main || echo "no push"
