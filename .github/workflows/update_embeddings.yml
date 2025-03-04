@@ -25,6 +25,8 @@ jobs:
       - name: install requirements
         run: pip install -r requirements.txt
 
+      - name: set OpenAI API Key
+        run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
 
       - name: update embeddings with llamaindex
         run: python scripts/update_llamaindex.py
