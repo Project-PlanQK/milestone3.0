@@ -21,7 +21,7 @@ def update_embeddings():
         index = VectorStoreIndex.from_documents(documents)
 
     # save new embeddings
-    index.storage_context.persist(STORAGE_DIR)
+    index.storage_context.persist(PERSIST_DIR)
     print("updated and saved embeddings")
 
 if __name__ == "__main__":
